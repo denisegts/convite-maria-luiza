@@ -1,0 +1,63 @@
+/* Reset básico para centralizar tudo na tela do celular/computador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f3effa; /* Tom lavanda bem clarinho para o fundo do site */
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+/* Contêiner principal que segura as duas camadas */
+.container-convite {
+    position: relative;
+    width: 90%;
+    max-width: 450px; /* Tamanho ideal para telas de celular */
+    aspect-ratio: 3 / 4; /* Mantém a proporção do convite vertical */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilização comum para as duas camadas */
+.cartao-interno, .envelope-fechado {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 1.2s ease-in-out; /*Velocidade da animação */
+}
+
+/* Garante que as imagens fiquem responsivas dentro das divs */
+.cartao-interno img, .envelope-fechado img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* O envelope precisa ter um z-index maior para cobrir o convite */
+.envelope-fechado {
+    z-index: 2;
+}
+
+.cartao-interno {
+    z-index: 1;
+}
+
+/* CLASSE ANIMAÇÃO: Será adicionada via JavaScript quando houver o clique */
+.envelope-fechado.abrir{
+    transform: translateY(-100vh); /* Joga o envelope para cima, saindo da tela*/
+    opacity: 0; /* Faz ele sumir suavemente junto com o movimento */
+    pointer-events: none; /* Desativa cliques no envelope após aberto */
+}
